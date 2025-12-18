@@ -6,8 +6,6 @@ export const SITE_CONFIG: SiteConfig = {
   description:
     "Dynamic, results-driven Marketing Executive with nearly 3 years of experience in international enterprises in HCMC. Fluent in English with a Bachelor's in International Business.",
   lang: "en",
-  siteLogo: "/alejandro-small.jpg",
-  // Update site logo to the provided avatar
   siteLogo: "/images/avatar_jd.jpg",
   navLinks: [
     { text: "Experience", href: "#experience" },
