@@ -1,0 +1,32 @@
+---
+import Section from "./Section.astro";
+import type { EducationProps } from "@types";
+
+interface Props {
+  education: EducationProps[];
+}
+
+const { education } = Astro.props;
+---
+
+<Section text="Education" href="education">
+  {
+    education?.map(
+      ({ institution, degree, program, startDate, endDate, yearOfGraduation, classification }) => (
+        <div class="mb-8 rounded-xl border border-neutral/20 bg-black p-5">
+          <h3 class="mb-1 font-serif text-2xl font-semibold text-white">{degree}</h3>
+          <p class="text-sm text-neutral">
+            {institution}
+            {program ? ` — ${program}` : ""}
+          </p>
+          <p class="text-sm text-neutral">
+            {startDate && endDate ? `${startDate} — ${endDate}` : yearOfGraduation ? `Year of Graduation: ${yearOfGraduation}` : ""}
+          </p>
+          {classification && (
+            <p class="text-sm text-neutral">Degree classification: {classification}</p>
+          )}
+        </div>
+      ),
+    )
+  }
+</Section>

@@ -1,0 +1,36 @@
+---
+import Section from "./Section.astro";
+import type { CertificateProps } from "@types";
+
+interface Props {
+  certificates: CertificateProps[];
+}
+
+const { certificates } = Astro.props;
+---
+
+<Section text="Certificates" href="certificates">
+  {
+    certificates?.map(({ name, issuer, date, image, credentialLink }) => (
+      <details class="mb-8 rounded-xl border border-neutral/20 bg-black">
+        <summary class="cursor-pointer list-none px-5 py-5">
+          <h3 class="mb-1 font-serif text-2xl font-semibold text-white">{name}</h3>
+          <p class="text-sm text-neutral">{issuer}{date ? ` — ${date}` : ""}</p>
+        </summary>
+        <div class="px-5 pb-5">
+          {(credentialLink || image) ? (
+            <a
+              href={credentialLink || image}
+              target="_blank"
+              class="inline-block text-sm text-white hover:underline after:relative after:bottom-[-4px] after:content-[url(/external.svg)]"
+            >
+              View certificate
+            </a>
+          ) : (
+            <p class="text-sm text-neutral">No attachment available</p>
+          )}
+        </div>
+      </details>
+    ))
+  }
+</Section>
